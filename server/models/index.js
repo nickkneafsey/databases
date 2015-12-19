@@ -2,10 +2,13 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () {
+    get: function (callback) {
       db.connection.query('SELECT * FROM messages', function(err, rows){
-        if (err) throw err;
-        else return rows;
+        if (err) {
+          callback(err, null);
+        } 
+        else {
+          callback(null, rows);
       });
     }, // a function which produces all the messages
     post: function ( roomname, message, username ) {
