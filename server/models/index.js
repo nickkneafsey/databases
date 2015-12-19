@@ -9,25 +9,42 @@ module.exports = {
         } 
         else {
           callback(null, rows);
+        }
       });
     }, // a function which produces all the messages
-    post: function ( roomname, message, username ) {
-      var sql = 'INSERT INTO `Messages` (`roomname`, `text`, `username`) VALUES (' + roomname +',' + message +','+ username + ')';
+    post: function ( roomname, message, username , callback) {
+      var sql = 'INSERT INTO `Messages` (`roomname`, `message`, `username`) VALUES (\'' + roomname +'\',\'' + message +'\',\''+ username + '\')';
       db.connection.query(sql, function(error, results){
-        if (error) throw error;
-        return results;
+        if (error) {
+          callback(error, null);
+        } else {
+          callback(null, results);
+        }
       });
     } // a function which can be used to insert a message into the database
   },
 
   users: {
     // Ditto as above.
-    get: function () {},
-    post: function () {
-      var sql = 'INSERT INTO `Users` (`username`) VALUES (' + username + ')';
+    get: function (callback) {
+      var sql = 'SELECT * from `Users`';
+      db.connection.query(sql, function(err, results){
+        if (err){
+          callback(err, null);
+        } else {
+          callback(null, results);
+        }
+      });
+    },
+    post: function (username, callback) {
+      var sql = 'INSERT INTO `Users` (`username`) VALUES (\'' + username + '\')';
+      console.log(sql);
       db.connection.query(sql, function(error, results){
-        if (error) throw error;
-        return results;
+        if (error){
+          callback(error, null);
+        } else {
+          callback(null, results);
+        }
       });
     }
   }
