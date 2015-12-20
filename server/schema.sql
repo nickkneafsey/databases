@@ -19,9 +19,9 @@ USE chat;
 DROP TABLE IF EXISTS `Users`;
     
 CREATE TABLE `Users` (
-  -- `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `username` VARCHAR(20) NULL DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  PRIMARY KEY (`id`)
 );
 
 -- ---
@@ -50,19 +50,19 @@ CREATE TABLE `Messages` (
 DROP TABLE IF EXISTS `Rooms`;
     
 CREATE TABLE `Rooms` (
-  -- `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `roomname` VARCHAR(20) NULL DEFAULT NULL,
-  PRIMARY KEY (`roomname`)
+  PRIMARY KEY (`id`)
 );
 
 -- ---
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `Messages` ADD FOREIGN KEY (roomname) REFERENCES `Rooms` (`roomname`);
-ALTER TABLE `Messages` ADD FOREIGN KEY (username) REFERENCES `Users` (`username`);
+-- ALTER TABLE `Messages` ADD FOREIGN KEY (roomname) REFERENCES `Rooms` (`roomname`);
+-- ALTER TABLE `Messages` ADD FOREIGN KEY (username) REFERENCES `Users` (`username`);
 
--- ---
+-- -- ---
 -- Table Properties
 -- ---
 

@@ -12,8 +12,8 @@ module.exports = {
         }
       });
     }, // a function which produces all the messages
-    post: function ( roomname, message, username , callback) {
-      var sql = 'INSERT INTO `Messages` (`roomname`, `message`, `username`) VALUES (\'' + roomname +'\',\'' + message +'\',\''+ username + '\')';
+    post: function (args, callback) {
+      var sql = 'INSERT INTO `Messages` (`roomname`, `message`, `username`) VALUES (\'' + args[0] +'\',\'' + args[1] +'\',\''+ args[2] + '\')';
       db.connection.query(sql, function(error, results){
         if (error) {
           callback(error, null);
@@ -36,8 +36,8 @@ module.exports = {
         }
       });
     },
-    post: function (username, callback) {
-      var sql = 'INSERT INTO `Users` (`username`) VALUES (\'' + username + '\')';
+    post: function (args, callback) {
+      var sql = 'INSERT INTO `Users` (`username`) VALUES (\'' + args[0] + '\')';
       console.log(sql);
       db.connection.query(sql, function(error, results){
         if (error){
